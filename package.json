@@ -1,0 +1,33 @@
+{
+  "name": "@typeauth/hono",
+  "version": "0.0.1",
+  "description": "@typeauth/hono is the Hono middleware that simplifies the authentication process for your API applications running in Hono JS. It's a wrapper around the authentication API endpoint.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "lint": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/typeauth/api-node"
+  },
+  "keywords": [
+    "typeauth",
+    "authentication",
+    "typescript"
+  ],
+  "author": "typeuath dev",
+  "license": "MIT",
+  "dependencies": {
+    "hono": "^4.3.8"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "ts-jest": "^29.1.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
+}
