@@ -1,6 +1,6 @@
 # Typescript typeauth library
 
-@typeauth/api-node is a TypeScript library that simplifies the authentication process for your API applications running in node. It's a wrapper around the authentication API endpoint.
+@typeauth/hono is the Hono middleware that simplifies the authentication process for your API applications running in Hono JS. It's a wrapper around the authentication API endpoint."
 
 ## Features
 
@@ -16,7 +16,7 @@
 You can install typeauth using npm:
 
 ```bash
-npm install @typeauth/api-node
+npm install @typeauth/hono
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ npm install @typeauth/api-node
 First, import the `typeauth` class from the library:
 
 ```typescript
-import { typeauth } from "@typeauth/api-node";
+import { typeauth } from "@typeauth/hono";
 ```
 
 Then, initialize the `typeauth` instance with your desired options:
@@ -33,7 +33,6 @@ Then, initialize the `typeauth` instance with your desired options:
 const typeauth = new typeauth({
   appId: "YOUR_APP_ID",
   // Optional configuration options
-  baseUrl: "https://api.typeauth.com",
   tokenHeader: "Authorization",
   disableTelemetry: false,
   maxRetries: 5,
