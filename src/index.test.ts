@@ -1,6 +1,5 @@
-import { typeauthMiddleware, TypeauthConfig, TypeauthResponse } from './index';
-import { Hono, Context } from 'hono';
-import { HTTPException } from 'hono/http-exception';
+import { typeauthMiddleware, TypeauthResponse } from './index';
+import { Hono } from 'hono';
 
 // Mock the `fetch` function
 global.fetch = jest.fn();
