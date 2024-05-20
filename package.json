@@ -1,13 +1,13 @@
 {
   "name": "@typeauth/hono",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "@typeauth/hono is the Hono middleware that simplifies the authentication process for your API applications running in Hono JS. It's a wrapper around the authentication API endpoint.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
-  ],``
+  ],
   "scripts": {
     "build": "tsup",
     "lint": "tsc",
