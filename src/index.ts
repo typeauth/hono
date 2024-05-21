@@ -48,6 +48,20 @@ export type TypeauthResponse<T> = {
   };
 };
 
+
+interface AuthenticateResponse {
+  success: boolean;
+  message: string;
+  data: {
+    valid: boolean;
+    ratelimit: {
+      remaining: number;
+    };
+    remaining: number;
+    enabled: boolean;
+  }[];
+}
+
 async function authenticateToken(
   token: string,
   config: TypeauthConfig,
