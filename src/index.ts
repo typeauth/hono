@@ -48,7 +48,6 @@ export type TypeauthResponse<T> = {
   };
 };
 
-
 interface AuthenticateResponse {
   success: boolean;
   message: string;
@@ -169,7 +168,15 @@ export function typeauthMiddleware(config: TypeauthConfig): MiddlewareHandler {
     const result = await authenticateToken(token, config, c);
 
     if (result.error) {
-      return c.json({ error: result.error.message }, 401);
+      return c.json(
+        {
+          error: {
+            message: result.error.message,
+            docs: result.error.message,
+          },
+        },
+        401
+      );
     }
 
     c.set("typeauth", result.result);
