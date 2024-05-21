@@ -76,7 +76,9 @@ describe("typeauthMiddleware", () => {
     const res = await app.request(req);
 
     expect(res.status).toBe(401);
-    expect(await res.json()).toEqual({ error: mockError.message });
+    expect(await res.json()).toEqual({
+      error: { message: mockError.message, docs: mockError.message },
+    });
   });
 
   it("should retry authentication on API failure", async () => {
