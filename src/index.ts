@@ -96,7 +96,7 @@ async function authenticateToken(
 
       if (response.ok) {
         const data = await response.json();
-        if (data.success && data.valid) {
+        if (data?.success && data?.data?.[0]?.valid) {
           return { result: true };
         } else {
           return {
@@ -170,10 +170,7 @@ export function typeauthMiddleware(config: TypeauthConfig): MiddlewareHandler {
     if (result.error) {
       return c.json(
         {
-          error: {
-            message: result.error.message,
-            docs: result.error.docs,
-          },
+          result,
         },
         401
       );
