@@ -172,7 +172,7 @@ export function typeauthMiddleware(config: TypeauthConfig): MiddlewareHandler {
         {
           error: {
             message: result.error.message,
-            docs: result.error.message,
+            docs: result.error.docs,
           },
         },
         401
