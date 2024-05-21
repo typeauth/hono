@@ -141,7 +141,15 @@ export function typeauthMiddleware(config: TypeauthConfig): MiddlewareHandler {
     const token = extractTokenFromHeader(c.req.header(tokenHeader));
 
     if (!token) {
-      return c.json({ error: "Missing token" }, 401);
+      return c.json(
+        {
+          error: {
+            message: "Missing token",
+            docs: "https://docs.typeauth.com/errors/missing-token",
+          },
+        },
+        401
+      );
     }
 
     const result = await authenticateToken(token, config, c);
