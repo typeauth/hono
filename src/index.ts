@@ -170,7 +170,7 @@ export function typeauthMiddleware(config: TypeauthConfig): MiddlewareHandler {
     if (result.error) {
       return c.json(
         {
-          result,
+          ...result,
         },
         401
       );

@@ -16,10 +16,13 @@ describe("typeauthMiddleware", () => {
   it("should authenticate successfully with valid token", async () => {
     const mockToken = "valid-token";
     const mockResponse: TypeauthResponse<boolean> = { result: true };
-
     (fetch as jest.Mock).mockResolvedValueOnce({
       ok: true,
-      json: jest.fn().mockResolvedValueOnce({ success: true, valid: true }),
+      json: jest.fn().mockResolvedValueOnce({
+        success: true,
+        message: "",
+        data: [{ valid: true }],
+      }),
     });
 
     app.use(typeauthMiddleware({ appId: mockAppId }));
@@ -62,10 +65,13 @@ describe("typeauthMiddleware", () => {
       message: "Typeauth authentication failed",
       docs: "https://docs.typeauth.com/errors/authentication",
     };
-
     (fetch as jest.Mock).mockResolvedValueOnce({
       ok: true,
-      json: jest.fn().mockResolvedValueOnce({ success: false, valid: false }),
+      json: jest.fn().mockResolvedValueOnce({
+        success: false,
+        message: "Unauthorized",
+        data: [],
+      }),
     });
 
     app.use(typeauthMiddleware({ appId: mockAppId }));
@@ -76,20 +82,21 @@ describe("typeauthMiddleware", () => {
     const res = await app.request(req);
 
     expect(res.status).toBe(401);
-    expect(await res.json()).toEqual({
-      error: { message: mockError.message, docs: mockError.message },
-    });
+    expect(await res.json()).toEqual({ error: mockError });
   });
 
   it("should retry authentication on API failure", async () => {
     const mockToken = "valid-token";
     const mockResponse: TypeauthResponse<boolean> = { result: true };
-
     (fetch as jest.Mock)
       .mockRejectedValueOnce(new Error("API error"))
       .mockResolvedValueOnce({
         ok: true,
-        json: jest.fn().mockResolvedValueOnce({ success: true, valid: true }),
+        json: jest.fn().mockResolvedValueOnce({
+          success: true,
+          message: "",
+          data: [{ valid: true }],
+        }),
       });
 
     app.use(
